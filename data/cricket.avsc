@@ -1,0 +1,14 @@
+{   "namespace": "com.supergloo.cricket",
+    "type": "record",
+    "name": "Cricket",
+    "doc": "Cricket columns with fake data",
+    "fields": [
+        {"name": "inning", "type": "int", "doc": "Inning"},
+        {"name": "team", "type": "string", "doc": "Team name based on animal scientific name"},
+        {"name": "delivery", "type": "float", "doc": "Delivery number"},
+        {"name": "batsman", "type": "string", "doc": "Name"},
+        {"name": "bowler", "type": "string", "doc": "Name"},
+        {"name": "non_striker", "type": "string", "doc": "Name"},
+        {"name": "runs", "type": "int", "doc": "Inning"}
+    ]
+}

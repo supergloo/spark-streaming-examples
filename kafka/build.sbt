@@ -28,9 +28,20 @@ javaOptions in run ++= Seq(
   "-Dlog4j.configuration=log4j.properties")
 
 val sparkVersion = "2.4.5"
+val confluentVersion = "5.4.1"
+
+resolvers += "Confluent Platform" at "http://packages.confluent.io/maven/"
+
+//  https://stackoverflow.com/questions/51515010/incompatible-jackson-version-spark-structured-streaming
+dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-databind" % "2.6.7"
 
 libraryDependencies ++= Seq(
   "org.scala-lang" % "scala-library" % scalaVersion.value,
   "org.apache.spark" %% "spark-sql" % sparkVersion % "provided",
-  "org.apache.spark" %% "spark-sql-kafka-0-10" % sparkVersion
+  "org.apache.spark" %% "spark-sql-kafka-0-10" % sparkVersion,
+  "org.apache.spark" %% "spark-avro" % sparkVersion,
+  "io.confluent" % "kafka-schema-registry-client" % confluentVersion,
+  "io.confluent" % "kafka-avro-serializer" % confluentVersion
+
+
 )
