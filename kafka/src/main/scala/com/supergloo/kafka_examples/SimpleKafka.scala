@@ -15,7 +15,7 @@ object SimpleKafka {
   private val kafkaAvroDeserializer = new AvroDeserializer(schemaRegistryClient)
 
   private val avroSchema = schemaRegistryClient.getLatestSchemaMetadata(INPUT_TOPIC_AVRO + "-value").getSchema
-  private var sparkSchema = SchemaConverters.toSqlType(new Schema.Parser().parse(avroSchema))
+  private var jsonS = SchemaConverters.toSqlType(new Schema.Parser().parse(avroSchema))
 
   def main(args: Array[String]) {
 
@@ -93,17 +93,13 @@ object SimpleKafka {
       .format("console")
       .start()
 
-//    import org.apache.spark.sql.functions._
-
-    val jsonS = SchemaConverters.toSqlType(new Schema.Parser().parse(avroSchema))
-
-    val jsonDf = inputAvroDf.select(
+    val avroDf = inputAvroDf.select(
       callUDF("deserialize", 'value).as("message")
     )
       .select(from_json('message, jsonS.dataType).as("cricket"))
       .select("cricket.*")
 
-    jsonDf.writeStream
+    avroDf.writeStream
       .outputMode("append")
       .format("console")
       .start()
