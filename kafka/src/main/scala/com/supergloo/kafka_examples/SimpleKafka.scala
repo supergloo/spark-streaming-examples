@@ -69,11 +69,7 @@ object SimpleKafka {
       .format("console")
       .start()
 
-
     println("*** AVRO  ***")
-
-    // with schema registry
-    // https://stackoverflow.com/questions/48882723/integrating-spark-structured-streaming-with-the-confluent-schema-registry
 
     val inputAvroDf = spark.readStream
       .format("kafka")
@@ -106,12 +102,26 @@ object SimpleKafka {
 
 //    jsonDf.printSchema()
 
+    spark.streams.awaitAnyTermination()
+
+
     // Question for you...
     // the three arg `from_avro` function is only available with Databricks? re:
     // https://databricks.com/blog/2019/02/15/how-to-work-with-avro-kafka-and-schema-registry-in-databricks.html
     // let me know
 
-    spark.streams.awaitAnyTermination()
+    //I couldn't get the two arg `from_avro` function to work
+
+//    println(s"SCHEMA ${avroSchema}")
+//
+//    val avroDf2 = inputAvroDf
+//      .select(from_avro('value, avroSchema).as("cricket"))
+//      .select("cricket.*")
+//
+//    avroDf2.writeStream
+//      .outputMode("append")
+//      .format("console")
+//      .start()
 
   }
 

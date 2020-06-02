@@ -1,7 +1,8 @@
 name := "spark-structured-streaming-simple-kafka"
 organization := "com.supergloo"
 version := "0.2"
-scalaVersion := "2.12.10"
+//scalaVersion := "2.12.10" // depends on which version of Spark
+scalaVersion := "2.11.12"
 
 assemblyOption in assembly := (assemblyOption in assembly).value.copy(includeScala = false)
 
@@ -42,6 +43,4 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-avro" % sparkVersion,
   "io.confluent" % "kafka-schema-registry-client" % confluentVersion,
   "io.confluent" % "kafka-avro-serializer" % confluentVersion
-
-
 )
