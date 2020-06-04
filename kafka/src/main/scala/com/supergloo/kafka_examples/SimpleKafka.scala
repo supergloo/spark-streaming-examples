@@ -107,9 +107,7 @@ object SimpleKafka {
 
     // Question for you...
     // the three arg `from_avro` function is only available with Databricks? re:
-    // https://databricks.com/blog/2019/02/15/how-to-work-with-avro-kafka-and-schema-registry-in-databricks.html
-    // let me know
-
+    // https://docs.databricks.com/spark/latest/structured-streaming/avro-dataframe.html#example-with-schema-registry
     //I couldn't get the two arg `from_avro` function to work
 
 //    println(s"SCHEMA ${avroSchema}")
