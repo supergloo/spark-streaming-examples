@@ -36,6 +36,10 @@ resolvers += "Confluent Platform" at "http://packages.confluent.io/maven/"
 //  https://stackoverflow.com/questions/51515010/incompatible-jackson-version-spark-structured-streaming
 dependencyOverrides += "com.fasterxml.jackson.core" % "jackson-databind" % "2.6.7"
 
+//java.lang.IllegalArgumentException: Illegal pattern component: XXX
+//	at org.apache.commons.lang3.time.FastDatePrinter.parsePattern(FastDatePrinter.java:282)
+dependencyOverrides += "org.apache.commons" % "commons-lang3" % "3.5"
+
 libraryDependencies ++= Seq(
   "org.scala-lang" % "scala-library" % scalaVersion.value,
   "org.apache.spark" %% "spark-sql" % sparkVersion % "provided",
